@@ -59,8 +59,8 @@ public class ColumnController {
                 .countOfTasks(0)
                 .columnType(ColumnType.DONE)
                 .build();
-
         Collections.addAll(defaultColumns, todo, inProgress, done);
+        columnService.saveAll(defaultColumns);
         return ResponseEntity.ok(defaultColumns);
     }
 

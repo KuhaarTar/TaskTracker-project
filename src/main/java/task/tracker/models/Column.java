@@ -1,6 +1,5 @@
 package task.tracker.models;
 
-import jakarta.persistence.CascadeType;
 import jakarta.persistence.Entity;
 import jakarta.persistence.EnumType;
 import jakarta.persistence.Enumerated;
@@ -38,7 +37,4 @@ public class Column {
     @NotNull
     @Enumerated(EnumType.STRING)
     private ColumnType columnType;
-
-    @OneToMany(mappedBy = "column")
-    private List<Task> tasks;
 }
