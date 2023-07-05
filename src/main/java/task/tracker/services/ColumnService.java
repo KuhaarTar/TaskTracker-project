@@ -2,10 +2,11 @@ package task.tracker.services;
 
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
-import task.tracker.enums.ColumnType;
 import task.tracker.models.Column;
 import task.tracker.repositories.ColumnRepository;
 
+import java.util.Collection;
+import java.util.Collections;
 import java.util.List;
 import java.util.Optional;
 
@@ -30,5 +31,9 @@ public class ColumnService {
 
     public void deleteCustomOnly(Column column){
         columnRepository.delete(column);
+    }
+
+    public void saveAll(Iterable<Column> list){
+        columnRepository.saveAll(list);
     }
 }

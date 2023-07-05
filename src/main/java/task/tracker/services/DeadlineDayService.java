@@ -1,7 +1,6 @@
 package task.tracker.services;
 
 import lombok.RequiredArgsConstructor;
-import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import task.tracker.models.DeadlineDay;
 import task.tracker.repositories.DeadlineDayRepository;
