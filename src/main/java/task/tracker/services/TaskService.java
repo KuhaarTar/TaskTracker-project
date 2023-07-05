@@ -1,7 +1,9 @@
 package task.tracker.services;
 
 import lombok.RequiredArgsConstructor;
+import org.springframework.http.HttpStatusCode;
 import org.springframework.stereotype.Service;
+import org.springframework.web.client.HttpClientErrorException;
 import org.springframework.web.client.HttpClientErrorException.NotFound;
 import task.tracker.models.Task;
 import task.tracker.repositories.ColumnRepository;
@@ -26,7 +28,6 @@ public class TaskService {
         taskRepository.save(task);
         return task;
     }
-
     public Optional<Task> getById(Integer id){
         return taskRepository.findById(id);
     }
@@ -37,5 +38,20 @@ public class TaskService {
 
     public void delete(Task task){
         taskRepository.delete(task);
+    }
+
+    public Task moveTask(Integer taskId ,
+                         Integer currentColumnId ) {
+        var task = taskRepository.findById(taskId);
+        var currentColumn = columnRepository.findById(currentColumnId);
+        if (task.isEmpty() || currentColumn.isEmpty()){
+            throw new HttpClientErrorException(HttpStatusCode.valueOf(404));
+        }
+        var destinationColumn = columnRepository.findByColumnType(task.get().getColumnType());
+        currentColumn.get().getTasks().remove(task.get());
+        destinationColumn.getTasks().add(task.get());
+        columnRepository.save(currentColumn.get());
+        columnRepository.save(destinationColumn);
+        return task.get();
     }
 }
