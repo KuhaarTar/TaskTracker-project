@@ -1,4 +1,4 @@
-package task.tracker;
+package com.kuhar.tasktracker;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;

@@ -10,7 +10,7 @@
     </parent>
     <groupId>task.tracker</groupId>
     <artifactId>TaskTracker-project</artifactId>
-    <version>0.0.1-SNAPSHOT</version>
+    <version>1.3.0</version>
     <name>TaskTracker-project</name>
     <description>TaskTracker-project</description>
     <properties>
@@ -64,6 +64,10 @@
             <artifactId>spring-boot-starter-test</artifactId>
             <scope>test</scope>
         </dependency>
+<!--        <dependency>-->
+<!--            <groupId>org.springframework.security</groupId>-->
+<!--            <artifactId>spring-security-web</artifactId>-->
+<!--        </dependency>-->
     </dependencies>
 
     <build>

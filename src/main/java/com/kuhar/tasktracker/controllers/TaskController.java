@@ -1,6 +1,5 @@
-package task.tracker.controllers;
+package com.kuhar.tasktracker.controllers;
 
-import jakarta.validation.constraints.NotNull;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -11,8 +10,9 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
-import task.tracker.models.Task;
-import task.tracker.services.TaskService;
+import com.kuhar.tasktracker.models.Task;
+import com.kuhar.tasktracker.responses.TaskResponse;
+import com.kuhar.tasktracker.services.TaskService;
 
 import java.util.List;
 
@@ -24,7 +24,7 @@ public class TaskController {
     private final TaskService taskService;
 
     @PostMapping
-    public ResponseEntity<Task> create(@RequestBody Task task){
+    public ResponseEntity<TaskResponse> create(@RequestBody Task task) {
         return ResponseEntity.ok(taskService.create(task));
     }
 
@@ -46,9 +46,8 @@ public class TaskController {
         return ResponseEntity.ok().build();
     }
 
-    @PatchMapping("/{taskId}/{currentColumnId}")
-    public ResponseEntity<Task> moveTask(@PathVariable @NotNull Integer taskId ,
-                                         @PathVariable @NotNull Integer currentColumnId){
-        return ResponseEntity.ok(taskService.moveTask(taskId,currentColumnId));
+    @PatchMapping()
+    public ResponseEntity<Task> update(@RequestBody Task task){
+        return ResponseEntity.ok(taskService.update(task));
     }
 }

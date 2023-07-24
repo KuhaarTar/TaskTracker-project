@@ -1,18 +1,15 @@
-package task.tracker.models;
-import com.fasterxml.jackson.annotation.JsonIgnore;
+package com.kuhar.tasktracker.models;
 import jakarta.persistence.Entity;
 import jakarta.persistence.EnumType;
 import jakarta.persistence.Enumerated;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.Id;
-import jakarta.persistence.JoinColumn;
-import jakarta.persistence.ManyToOne;
 import jakarta.validation.constraints.Pattern;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
-import task.tracker.enums.ColumnType;
+import com.kuhar.tasktracker.enums.ColumnType;
 
 import java.util.Date;
 
@@ -35,9 +32,5 @@ public class Task {
 
     @Enumerated(EnumType.STRING)
     private ColumnType columnType;
-
-    @ManyToOne
-    @JoinColumn(name = "column_id")
-    private Column column;
 }
 

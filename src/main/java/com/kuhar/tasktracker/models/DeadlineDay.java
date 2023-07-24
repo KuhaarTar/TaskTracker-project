@@ -1,6 +1,5 @@
-package task.tracker.models;
+package com.kuhar.tasktracker.models;
 
-import jakarta.persistence.CascadeType;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
