@@ -1,6 +1,6 @@
 package com.kuhar.tasktracker.responses;
 
-import com.kuhar.tasktracker.exceptions.ProjectException;
+import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.RequiredArgsConstructor;
@@ -13,8 +13,9 @@ import java.time.ZonedDateTime;
 @Setter
 @Builder
 @RequiredArgsConstructor
-public class ExceptionResponse {
-    private final String message;
-    private final HttpStatus httpStatus;
-    private final ZonedDateTime timestamp;
+@AllArgsConstructor
+public class ExceptionRespons {
+    String message;
+    HttpStatus httpStatus;
+    ZonedDateTime timestamp;
 }
