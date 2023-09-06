@@ -2,10 +2,9 @@ package com.kuhar.tasktracker.services;
 
 import com.kuhar.tasktracker.models.DeadlineDay;
 import com.kuhar.tasktracker.models.Task;
+import jakarta.persistence.EntityNotFoundException;
 import lombok.RequiredArgsConstructor;
-import org.springframework.http.HttpStatusCode;
 import org.springframework.stereotype.Service;
-import org.springframework.web.client.HttpClientErrorException;
 import com.kuhar.tasktracker.repositories.DeadlineDayRepository;
 
 import java.util.List;
@@ -24,8 +23,7 @@ public class DeadlineDayService {
     public Optional<Task> getTaskByDeadlineDayId(Integer id) {
         Task task = deadlineDayRepository.findById(id)
                 .orElseThrow(
-                        () -> new HttpClientErrorException
-                                (HttpStatusCode.valueOf(404))).getTask();
+                        () -> new EntityNotFoundException("Not found such task")).getTask();
         return Optional.of(task);
     }
 }

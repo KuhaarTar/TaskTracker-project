@@ -12,10 +12,9 @@ import java.time.ZonedDateTime;
 @Getter
 @Setter
 @Builder
-@RequiredArgsConstructor
 @AllArgsConstructor
-public class ExceptionRespons {
-    String message;
-    HttpStatus httpStatus;
-    ZonedDateTime timestamp;
+public class ExceptionResponse {
+    private String message;
+    private HttpStatus httpStatus;
+    private ZonedDateTime timestamp;
 }

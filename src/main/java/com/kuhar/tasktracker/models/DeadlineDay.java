@@ -12,7 +12,8 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
-import java.util.Date;
+import java.time.LocalDate;
+import java.time.LocalTime;
 
 @Entity
 @Getter
@@ -26,8 +27,8 @@ public class DeadlineDay {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
 
-    private Date deadlineDate;
-
+    private LocalDate deadlineDate;
+    private LocalTime deadlineTime;
     @OneToOne
     @JoinColumn(name = "task_id")
     private Task task;

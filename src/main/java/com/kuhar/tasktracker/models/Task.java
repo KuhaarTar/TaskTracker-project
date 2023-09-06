@@ -11,7 +11,8 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 import com.kuhar.tasktracker.enums.ColumnType;
 
-import java.util.Date;
+import java.time.LocalDate;
+import java.time.LocalTime;
 
 @Entity
 @Getter
@@ -28,7 +29,8 @@ public class Task {
     @Pattern(regexp = "#.*")
     private String tag;
 
-    private Date deadlineDate;
+    private LocalDate deadlineDate;
+    private LocalTime deadlineTime;
 
     @Enumerated(EnumType.STRING)
     private ColumnType columnType;

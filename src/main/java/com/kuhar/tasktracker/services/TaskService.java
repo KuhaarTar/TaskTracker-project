@@ -23,6 +23,7 @@ public class TaskService {
     public TaskResponse create(Task task) throws NotFound {
         var deadline = DeadlineDay.builder()
                 .deadlineDate(task.getDeadlineDate())
+                .deadlineTime(task.getDeadlineTime())
                 .task(task)
                 .build();
         taskRepository.save(task);
