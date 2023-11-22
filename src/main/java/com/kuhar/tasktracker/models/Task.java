@@ -30,7 +30,7 @@ public class Task {
     private String tag;
 
     private LocalDate deadlineDate;
-    private LocalTime deadlineTime;
+    private LocalTime deadline;
 
     @Enumerated(EnumType.STRING)
     private ColumnType columnType;
