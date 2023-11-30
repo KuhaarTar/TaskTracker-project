@@ -27,6 +27,7 @@ public class JwtService {
                 .signWith(getSecret())
                 .compact();
     }
+
     public String createToken(Map<String, Object> claims, UserDetails user) {
         return Jwts.builder()
                 .addClaims(claims)
@@ -36,11 +37,12 @@ public class JwtService {
                 .signWith(getSecret())
                 .compact();
     }
+
     public String createRefreshToken(User user) {
         return Jwts.builder()
                 .setSubject(user.getUsername())
                 .setIssuedAt(new Date(System.currentTimeMillis()))
-                .setExpiration(new Date(System.currentTimeMillis()+ 1000 * 60 * 24 * 30))
+                .setExpiration(new Date(System.currentTimeMillis() + 1000 * 60 * 24 * 30))
                 .signWith(getSecret())
                 .compact();
     }
