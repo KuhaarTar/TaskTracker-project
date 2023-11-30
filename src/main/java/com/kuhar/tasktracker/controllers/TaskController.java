@@ -1,5 +1,9 @@
 package com.kuhar.tasktracker.controllers;
 
+import com.kuhar.tasktracker.dto.TaskDto;
+import com.kuhar.tasktracker.enums.ColumnType;
+import com.kuhar.tasktracker.models.Task;
+import com.kuhar.tasktracker.services.TaskService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -9,10 +13,8 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
-import com.kuhar.tasktracker.models.Task;
-import com.kuhar.tasktracker.responses.TaskResponse;
-import com.kuhar.tasktracker.services.TaskService;
 
 import java.util.List;
 
@@ -24,30 +26,37 @@ public class TaskController {
     private final TaskService taskService;
 
     @PostMapping
-    public ResponseEntity<TaskResponse> create(@RequestBody Task task) {
+    public ResponseEntity<TaskDto> create(@RequestBody Task task) {
         return ResponseEntity.ok(taskService.create(task));
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<Task> getById(@PathVariable Integer id){
-        if(taskService.getById(id).isPresent()){
-            return ResponseEntity.ok(taskService.getById(id).get());
-        }
-        return ResponseEntity.notFound().build();
+    public ResponseEntity<TaskDto> getById(@PathVariable Long id) {
+        return ResponseEntity.ok(taskService.getById(id));
     }
 
     @GetMapping
-    public ResponseEntity<List<Task>> getAll(){
+    public ResponseEntity<List<TaskDto>> getAll() {
         return ResponseEntity.ok(taskService.getAll());
     }
 
-    @DeleteMapping ResponseEntity<?> delete(Task task){
-        taskService.delete(task);
+    @DeleteMapping
+    ResponseEntity<?> delete(Long taskId) {
+        taskService.delete(taskId);
         return ResponseEntity.ok().build();
     }
 
-    @PatchMapping()
-    public ResponseEntity<Task> update(@RequestBody Task task){
-        return ResponseEntity.ok(taskService.update(task));
+    @PatchMapping("/{id}")
+    public ResponseEntity<?> changeColumnType(@RequestParam ColumnType type,
+                                              @PathVariable Long id) {
+        taskService.changeColumnType(type, id);
+        return ResponseEntity.ok().build();
+    }
+
+    @PatchMapping("/{id}")
+    public ResponseEntity<TaskDto> update(@RequestParam String tag,
+                                          @RequestParam String note,
+                                          @PathVariable Long id) {
+        return ResponseEntity.ok(taskService.update(tag, note, id));
     }
 }

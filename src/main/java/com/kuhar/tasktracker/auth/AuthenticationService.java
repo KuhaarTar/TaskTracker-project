@@ -41,7 +41,6 @@ public class AuthenticationService {
                 .email(request.getEmail())
                 .password(passwordEncoder.encode(request.getPassword()))
                 .role(Role.USER)
-                .gitHubRef(request.getGitHubRef())
                 .build();
         userRepository.save(user);
         String accessToken = createAccessToken(user);
