@@ -2,8 +2,6 @@
 
 by Taras Kuhar
 
-## `THERE IS AN ISSUE WITH AUTHENTICATION AND SECURITY OF YOUR DATA , at near time i will resolve it`
-
 ---
 
 Pet project created for tracking and managing your tasks
