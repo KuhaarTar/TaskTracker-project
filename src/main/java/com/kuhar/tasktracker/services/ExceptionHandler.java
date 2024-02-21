@@ -3,7 +3,7 @@ package com.kuhar.tasktracker.services;
 import com.kuhar.tasktracker.exceptions.PasswordsDoesNotMatchException;
 import com.kuhar.tasktracker.exceptions.ProjectException;
 import com.kuhar.tasktracker.exceptions.TokenException;
-import com.kuhar.tasktracker.responses.ExceptionResponse;
+import com.kuhar.tasktracker.controllers.responses.ExceptionResponse;
 import jakarta.persistence.EntityNotFoundException;
 import jakarta.validation.ConstraintViolationException;
 import jakarta.validation.ValidationException;
@@ -30,6 +30,7 @@ public class ExceptionHandler {
                 .build();
         return new ResponseEntity<>(exceptionResponse, NOT_FOUND);
     }
+
     @org.springframework.web.bind.annotation.ExceptionHandler(value = EntityNotFoundException.class)
     public ResponseEntity<Object> exceptionHandle(EntityNotFoundException e) {
         ExceptionResponse exceptionResponse = ExceptionResponse.builder()
@@ -39,9 +40,10 @@ public class ExceptionHandler {
                 .build();
         return new ResponseEntity<>(exceptionResponse, NOT_FOUND);
     }
+
     @org.springframework.web.bind.annotation.ExceptionHandler(value = {
-            TokenException.class ,
-            PasswordsDoesNotMatchException.class })
+            TokenException.class,
+            PasswordsDoesNotMatchException.class})
     public ResponseEntity<Object> exceptionHandle(ProjectException e) {
         ExceptionResponse exceptionResponse = ExceptionResponse.builder()
                 .message(e.getMessage())
@@ -50,8 +52,9 @@ public class ExceptionHandler {
                 .build();
         return new ResponseEntity<>(exceptionResponse, BAD_REQUEST);
     }
+
     @org.springframework.web.bind.annotation.ExceptionHandler(value = {
-            ConstraintViolationException.class })
+            ConstraintViolationException.class})
     public ResponseEntity<Object> exceptionHandle(ValidationException e) {
         ExceptionResponse exceptionResponse = ExceptionResponse.builder()
                 .message(e.getMessage())

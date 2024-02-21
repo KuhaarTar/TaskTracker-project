@@ -1,12 +1,10 @@
 package com.kuhar.tasktracker.models;
 
-import com.kuhar.tasktracker.enums.TokenType;
+import com.kuhar.tasktracker.models.enums.TokenType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.EnumType;
 import jakarta.persistence.Enumerated;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
@@ -16,8 +14,6 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
-import java.time.LocalDateTime;
-
 @Entity
 @Getter
 @Setter
@@ -25,11 +21,7 @@ import java.time.LocalDateTime;
 @Table(name = "token")
 @AllArgsConstructor
 @NoArgsConstructor
-public class Token {
-
-    @Id
-    @GeneratedValue
-    private Long id;
+public class Token extends BaseEntity {
     @Column(nullable = false)
     private String token;
     @Enumerated(EnumType.STRING)

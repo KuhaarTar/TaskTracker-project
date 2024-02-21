@@ -1,6 +1,6 @@
 package com.kuhar.tasktracker.auth;
 
-import com.kuhar.tasktracker.enums.TokenType;
+import com.kuhar.tasktracker.models.enums.TokenType;
 import com.kuhar.tasktracker.exceptions.JwtAuthenticationException;
 import com.kuhar.tasktracker.exceptions.TokenException;
 import com.kuhar.tasktracker.repositories.TokenRepository;
@@ -42,7 +42,7 @@ public class JwtAuthenticationFilter extends OncePerRequestFilter {
         final String token;
         final String userEmail;
         if (authHeader == null || !authHeader.startsWith("Bearer ")) {
-            filterChain.doFilter(request,response);
+            filterChain.doFilter(request, response);
             return;
         }
         token = authHeader.substring(7);

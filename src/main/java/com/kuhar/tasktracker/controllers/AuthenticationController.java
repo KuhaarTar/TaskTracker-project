@@ -1,8 +1,8 @@
 package com.kuhar.tasktracker.controllers;
 
 import com.kuhar.tasktracker.auth.AuthenticationService;
-import com.kuhar.tasktracker.requests.AuthenticationRequest;
-import com.kuhar.tasktracker.requests.RegisterRequest;
+import com.kuhar.tasktracker.controllers.requests.AuthenticationRequest;
+import com.kuhar.tasktracker.controllers.requests.RegisterRequest;
 import jakarta.servlet.http.HttpServletRequest;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
@@ -23,7 +23,7 @@ public class AuthenticationController {
         return ResponseEntity.ok(authService.register(request));
     }
 
-    @PostMapping("/log")
+    @PostMapping("/login")
     public ResponseEntity<?> login(@RequestBody AuthenticationRequest request) {
         return ResponseEntity.ok(authService.authenticate(request));
     }

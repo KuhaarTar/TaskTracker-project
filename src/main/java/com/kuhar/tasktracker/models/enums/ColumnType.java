@@ -1,9 +1,8 @@
-package com.kuhar.tasktracker.enums;
+package com.kuhar.tasktracker.models.enums;
 
 public enum ColumnType {
     TODO,
     IN_PROGRESS,
     DONE,
-    IN_REVIEW,
     ON_HOLD,
 }
