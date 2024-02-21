@@ -1,4 +1,4 @@
-package com.kuhar.tasktracker.mappers;
+package com.kuhar.tasktracker.services.mappers;
 
 import com.kuhar.tasktracker.models.BaseEntity;
 

@@ -1,7 +1,7 @@
 package com.kuhar.tasktracker.services;
 
-import com.kuhar.tasktracker.dto.UserDto;
-import com.kuhar.tasktracker.mappers.UserDtoMapper;
+import com.kuhar.tasktracker.models.dto.UserDto;
+import com.kuhar.tasktracker.services.mappers.UserDtoMapper;
 import com.kuhar.tasktracker.repositories.UserRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;

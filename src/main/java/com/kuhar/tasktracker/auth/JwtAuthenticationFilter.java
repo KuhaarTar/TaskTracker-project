@@ -1,6 +1,6 @@
 package com.kuhar.tasktracker.auth;
 
-import com.kuhar.tasktracker.enums.TokenType;
+import com.kuhar.tasktracker.models.enums.TokenType;
 import com.kuhar.tasktracker.exceptions.JwtAuthenticationException;
 import com.kuhar.tasktracker.exceptions.TokenException;
 import com.kuhar.tasktracker.repositories.TokenRepository;

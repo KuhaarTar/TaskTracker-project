@@ -1,0 +1,14 @@
+{
+  "properties": [
+    {
+      "name": "auth.token.access.expiration",
+      "type": "java.lang.String",
+      "description": "Description for auth.token.access.expiration."
+    },
+    {
+      "name": "auth.token.refresh.expiration",
+      "type": "java.lang.String",
+      "description": "Description for auth.token.refresh.expiration."
+    }
+  ]
+}

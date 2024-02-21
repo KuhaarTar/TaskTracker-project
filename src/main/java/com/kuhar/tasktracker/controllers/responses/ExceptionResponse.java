@@ -1,4 +1,4 @@
-package com.kuhar.tasktracker.responses;
+package com.kuhar.tasktracker.controllers.responses;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;

@@ -1,4 +1,4 @@
-package com.kuhar.tasktracker.requests;
+package com.kuhar.tasktracker.controllers.requests;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -11,7 +11,10 @@ import lombok.Setter;
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor
-public class AuthenticationRequest {
+public class RegisterRequest {
+    private String name;
     private String email;
     private String password;
+    private String confirmPassword;
+    private String gitHubRef;
 }

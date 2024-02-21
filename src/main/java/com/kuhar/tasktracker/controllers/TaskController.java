@@ -1,7 +1,7 @@
 package com.kuhar.tasktracker.controllers;
 
-import com.kuhar.tasktracker.dto.TaskDto;
-import com.kuhar.tasktracker.enums.ColumnType;
+import com.kuhar.tasktracker.models.dto.TaskDto;
+import com.kuhar.tasktracker.models.enums.ColumnType;
 import com.kuhar.tasktracker.models.Task;
 import com.kuhar.tasktracker.services.TaskService;
 import lombok.RequiredArgsConstructor;
@@ -40,23 +40,20 @@ public class TaskController {
         return ResponseEntity.ok(taskService.getAll());
     }
 
-    @DeleteMapping
-    ResponseEntity<?> delete(Long taskId) {
-        taskService.delete(taskId);
+    @DeleteMapping("/{id}")
+    ResponseEntity<?> delete(@PathVariable Long id) {
+        taskService.delete(id);
         return ResponseEntity.ok().build();
     }
 
     @PatchMapping("/{id}")
     public ResponseEntity<?> changeColumnType(@RequestParam ColumnType type,
                                               @PathVariable Long id) {
-        taskService.changeColumnType(type, id);
-        return ResponseEntity.ok().build();
+        return ResponseEntity.ok(taskService.changeColumnType(type, id));
     }
 
-    @PatchMapping("/{id}")
-    public ResponseEntity<TaskDto> update(@RequestParam String tag,
-                                          @RequestParam String note,
-                                          @PathVariable Long id) {
-        return ResponseEntity.ok(taskService.update(tag, note, id));
+    @PatchMapping
+    public ResponseEntity<TaskDto> update(@RequestBody TaskDto updatedTask) {
+        return ResponseEntity.ok(taskService.update(updatedTask));
     }
 }

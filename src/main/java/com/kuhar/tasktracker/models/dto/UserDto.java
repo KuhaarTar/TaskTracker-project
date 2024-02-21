@@ -1,4 +1,4 @@
-package com.kuhar.tasktracker.dto;
+package com.kuhar.tasktracker.models.dto;
 
 import lombok.Builder;
 

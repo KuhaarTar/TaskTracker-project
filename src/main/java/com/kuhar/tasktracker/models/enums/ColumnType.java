@@ -1,4 +1,4 @@
-package com.kuhar.tasktracker.enums;
+package com.kuhar.tasktracker.models.enums;
 
 public enum ColumnType {
     TODO,

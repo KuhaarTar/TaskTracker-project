@@ -3,7 +3,7 @@ package com.kuhar.tasktracker.services;
 import com.kuhar.tasktracker.exceptions.PasswordsDoesNotMatchException;
 import com.kuhar.tasktracker.exceptions.ProjectException;
 import com.kuhar.tasktracker.exceptions.TokenException;
-import com.kuhar.tasktracker.responses.ExceptionResponse;
+import com.kuhar.tasktracker.controllers.responses.ExceptionResponse;
 import jakarta.persistence.EntityNotFoundException;
 import jakarta.validation.ConstraintViolationException;
 import jakarta.validation.ValidationException;

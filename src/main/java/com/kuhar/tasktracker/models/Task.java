@@ -1,6 +1,6 @@
 package com.kuhar.tasktracker.models;
 
-import com.kuhar.tasktracker.enums.ColumnType;
+import com.kuhar.tasktracker.models.enums.ColumnType;
 import jakarta.persistence.Entity;
 import jakarta.persistence.EnumType;
 import jakarta.persistence.Enumerated;

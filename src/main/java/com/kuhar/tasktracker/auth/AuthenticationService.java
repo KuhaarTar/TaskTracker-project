@@ -1,16 +1,16 @@
 package com.kuhar.tasktracker.auth;
 
-import com.kuhar.tasktracker.enums.Role;
-import com.kuhar.tasktracker.enums.TokenType;
+import com.kuhar.tasktracker.models.enums.Role;
+import com.kuhar.tasktracker.models.enums.TokenType;
 import com.kuhar.tasktracker.exceptions.PasswordsDoesNotMatchException;
 import com.kuhar.tasktracker.exceptions.TokenException;
 import com.kuhar.tasktracker.models.Token;
 import com.kuhar.tasktracker.models.User;
 import com.kuhar.tasktracker.repositories.TokenRepository;
 import com.kuhar.tasktracker.repositories.UserRepository;
-import com.kuhar.tasktracker.requests.AuthenticationRequest;
-import com.kuhar.tasktracker.requests.RegisterRequest;
-import com.kuhar.tasktracker.responses.AuthenticationResponse;
+import com.kuhar.tasktracker.controllers.requests.AuthenticationRequest;
+import com.kuhar.tasktracker.controllers.requests.RegisterRequest;
+import com.kuhar.tasktracker.controllers.responses.AuthenticationResponse;
 import jakarta.servlet.http.HttpServletRequest;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.authentication.AuthenticationManager;
@@ -93,7 +93,7 @@ public class AuthenticationService {
         User user = extractUserFromRequest(request);
         deleteOldTokens(request);
         String accessToken = createAccessToken(user);
-        String refreshToken = createRefreshToken(user);
+        String refreshToken = tokenRepository.findTokensByUser(user).get(0).getToken();
         return AuthenticationResponse.builder()
                 .accessToken(accessToken)
                 .refreshToken(refreshToken)
@@ -102,7 +102,8 @@ public class AuthenticationService {
 
     private void deleteOldTokens(HttpServletRequest request) {
         User user = extractUserFromRequest(request);
-        List<Token> tokens = tokenRepository.findTokensByUser(user);
+        List<Token> tokens = tokenRepository.findTokensByUser(user)
+                .stream().filter(token -> token.getType().equals(TokenType.ACCESS)).toList();
         List<Long> ids = tokens.stream().map(Token::getId).collect(Collectors.toList());
         tokenRepository.deleteAllById(ids);
     }

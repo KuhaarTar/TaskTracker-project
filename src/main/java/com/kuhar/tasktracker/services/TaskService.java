@@ -1,9 +1,9 @@
 package com.kuhar.tasktracker.services;
 
-import com.kuhar.tasktracker.dto.TaskDto;
-import com.kuhar.tasktracker.enums.ColumnType;
+import com.kuhar.tasktracker.models.dto.TaskDto;
+import com.kuhar.tasktracker.models.enums.ColumnType;
 import com.kuhar.tasktracker.exceptions.PermissionDeniedException;
-import com.kuhar.tasktracker.mappers.TaskDtoMapper;
+import com.kuhar.tasktracker.services.mappers.TaskDtoMapper;
 import com.kuhar.tasktracker.models.Task;
 import com.kuhar.tasktracker.models.User;
 import com.kuhar.tasktracker.repositories.TaskRepository;
@@ -43,16 +43,21 @@ public class TaskService {
         taskRepository.delete(task);
     }
 
-    public TaskDto update(String tag, String note, Long taskId) {
-        Task task = getTaskByUserAndId(audit.returnCurrentUser(), taskId);
-        task.setTag(tag);
-        task.setNote(note);
+    public TaskDto update(TaskDto updatedTask) {
+        Task task = getTaskByUserAndId(audit.returnCurrentUser(), updatedTask.taskId());
+        if (updatedTask.tag() != null) {
+            task.setTag(updatedTask.tag());
+        }
+        if (updatedTask.note() != null) {
+            task.setNote(updatedTask.note());
+        }
         return taskDtoMapper.mapEntityToDto(task);
     }
 
-    public void changeColumnType(ColumnType columnType, Long taskId) {
+    public TaskDto changeColumnType(ColumnType columnType, Long taskId) {
         Task task = getTaskByUserAndId(audit.returnCurrentUser(), taskId);
         task.setColumnType(columnType);
+        return taskDtoMapper.mapEntityToDto(task);
     }
 
     private Task getTaskByUserAndId(User principal, Long taskId) {
